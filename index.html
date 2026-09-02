@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sathsaaraa Music Classes</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; color: #222; background-image: url('background2.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; }
+        header { background: #111; color: white; text-align: center; padding: 12px 20px; }
+        header h1 { margin: 0; font-size: 38px; }
+        .site-logo { width: 230px; height: 230px; object-fit: contain; display: block; margin: 0 auto 4px; }
+        nav { background: #222; text-align: center; padding: 15px; }
+        nav a { color: white; text-decoration: none; margin: 4px 5px; padding: 8px 12px; border-radius: 20px; display: inline-block; transition: background .2s, color .2s; }
+        nav a:hover { background: #555; }
+        nav a.active { background: #f2c94c; color: #111; font-weight: bold; }
+        section { max-width: 900px; margin: auto; padding: 40px 20px; }
+        .box { background: rgba(255,255,255,0.94); padding: 25px; border-radius: 10px; margin-bottom: 20px; }
+        h2 { text-align: center; }
+        .subjects { display: flex; flex-wrap: nowrap; gap: 10px; justify-content: center; }
+        .subject { background: rgba(255,255,255,0.97); border-radius: 15px; overflow: hidden; font-weight: bold; text-align: center; box-shadow: 0 3px 10px rgba(0,0,0,0.12); width: 170px; flex: 0 0 170px; }
+        .subject img { width: 100%; height: auto; object-fit: contain; display: block; }
+        .subject-name { padding: 14px 8px 18px; font-size: 20px; }
+        .photos { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+         .videos { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .videos video { width: 220px; max-width: 100%; aspect-ratio: 9 / 16; height: auto; object-fit: cover; border-radius: 10px; background: #000; display: block; margin: 0 auto; }
+        .photos img { width: 100%; height: 300px; object-fit: cover; border-radius: 10px; display: block; }
+        footer { background: #111; color: white; text-align: center; padding: 25px; }
+        @media(max-width:600px) { .site-logo { width: 180px; height: 180px; } .subjects { flex-wrap: wrap; } header h1 { font-size: 28px; } nav a { display: inline-block; margin: 6px; } }
+    
+        .subject { cursor:pointer; transition:transform .2s, box-shadow .2s; }
+        .subject:hover { transform:translateY(-4px); box-shadow:0 6px 16px rgba(0,0,0,.2); }
+        .instrument-panel { display:none; background:rgba(255,255,255,.96); padding:25px; border-radius:15px; margin-top:25px; text-align:center; box-shadow:0 4px 14px rgba(0,0,0,.15); }
+        .instrument-panel.active { display:block; }
+        .instrument-panel img { width:220px; max-width:80%; border-radius:12px; display:block; margin:0 auto 15px; }
+        .instrument-close { padding:9px 18px; border:0; border-radius:20px; background:#222; color:white; cursor:pointer; }
+
+        .instrument-photo-gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:15px; margin:15px 0; }
+        .instrument-photo-gallery img { width:100%; height:260px; object-fit:cover; border-radius:12px; display:block; }
+
+        .mp3-player { background: rgba(255,255,255,0.94); padding: 25px; border-radius: 10px; margin-bottom: 20px; text-align: center; }
+        .mp3-player audio { width: 100%; max-width: 650px; margin-top: 15px; }
+
+        .request-form { background: rgba(255,255,255,0.96); padding: 25px; border-radius: 12px; max-width: 700px; margin: 0 auto; box-shadow: 0 4px 14px rgba(0,0,0,.12); }
+        .request-form label { display:block; font-weight:bold; margin:12px 0 6px; }
+        .request-form input, .request-form select, .request-form textarea { width:100%; box-sizing:border-box; padding:12px; border:1px solid #ccc; border-radius:8px; font-size:16px; }
+        .request-form textarea { min-height:120px; resize:vertical; }
+        .request-form button { margin-top:18px; padding:12px 24px; border:0; border-radius:22px; background:#222; color:white; font-size:16px; cursor:pointer; }
+        .request-note { text-align:center; margin-top:12px; }
+</style>
+</head>
+<body>
+
+<header>
+    <img class="site-logo" src="logo.png" alt="Sathsaaraa Music Classes Logo">
+    <h1>🎵 Sathsaaraa Music Classes</h1>
+    <p>Music Classes by D. Jayakody</p>
+</header>
+
+<nav>
+    <a href="#about">About</a>
+    <a href="#classes">Classes</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#photos">Photos</a>
+    <a href="#videos">Videos</a>
+    <a href="#mp3">MP3</a>
+    <a href="#request">Request a Class</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section id="about">
+    <h2>About Sathsaaraa Music Classes</h2>
+    <div class="box">
+        <h3>Teacher – D. Jayakody</h3>
+        <p>Sathsaaraa Music Classes provides simple, practical and enjoyable music education.</p>
+        <p>Online classes and Home Visiting classes are also available.</p>
+    </div>
+</section>
+
+<section id="classes">
+    <h2>🎼 Our Classes</h2>
+    <div class="subjects">
+        <div class="subject" onclick="showInstrument('guitar')" role="button" tabindex="0">
+            <img src="class-guitar.png" alt="Guitar">
+            <div class="subject-name">Guitar</div>
+        </div>
+        <div class="subject" onclick="showInstrument('keyboard')" role="button" tabindex="0">
+            <img src="class-keyboard.png" alt="Keyboard">
+            <div class="subject-name">Keyboard</div>
+        </div>
+        <div class="subject" onclick="showInstrument('ukulele')" role="button" tabindex="0">
+            <img src="class-ukulele.png" alt="Ukulele">
+            <div class="subject-name">Ukulele</div>
+        </div>
+        <div class="subject" onclick="showInstrument('violin')" role="button" tabindex="0">
+            <img src="class-violin.png" alt="Violin">
+            <div class="subject-name">Violin</div>
+        </div>
+        <div class="subject" onclick="showInstrument('vocal')" role="button" tabindex="0">
+            <img src="class-vocal.png" alt="Vocal">
+            <div class="subject-name">Vocal</div>
+        </div>
+    </div>
+
+    <div id="guitar" class="instrument-panel">
+        <h3>🎸 Guitar Class</h3>
+        <div class="instrument-photo-gallery">
+            <img src="guitar-class-photo2.jpg" alt="Guitar Class">
+            <img src="guitar-class-photo3.jpg" alt="Guitar Class">
+            <img src="guitar-class-photo4.jpg" alt="Guitar Class">
+        </div>
+        <button class="instrument-close" onclick="closeInstrument()">Close</button>
+    </div>
+
+    <div id="keyboard" class="instrument-panel">
+        <h3>🎹 Keyboard Class</h3>
+        <div class="instrument-photo-gallery">
+            <img src="keyboard-class-photo1.jpg" alt="Keyboard Class">
+            <img src="keyboard-class-photo2.jpg" alt="Keyboard Class">
+            <img src="keyboard-class-photo3.jpg" alt="Keyboard Class">
+        </div>
+        <button class="instrument-close" onclick="closeInstrument()">Close</button>
+    </div>
+    <div id="ukulele" class="instrument-panel">
+        <h3>🪕 Ukulele Class</h3>
+        <div class="instrument-photo-gallery">
+            <img src="ukulele-class-photo1.jpg" alt="Ukulele Class">
+            <img src="ukulele-class-photo2.jpg" alt="Ukulele Class">
+            <img src="ukulele-class-photo3.jpg" alt="Ukulele Class">
+        </div>
+        <button class="instrument-close" onclick="closeInstrument()">Close</button>
+    </div>
+
+    <div id="violin" class="instrument-panel">
+        <h3>🎻 Violin Class</h3>
+        <div class="instrument-photo-gallery">
+            <img src="violin-class-photo1.jpg" alt="Violin Class">
+            <img src="violin-class-photo2.jpg" alt="Violin Class">
+            <img src="violin-class-photo3.jpg" alt="Violin Class">
+        </div>
+        <button class="instrument-close" onclick="closeInstrument()">Close</button>
+    </div>
+    <div id="vocal" class="instrument-panel">
+        <h3>🎤 Vocal Class</h3>
+        <div class="instrument-photo-gallery">
+            <img src="vocal-class-photo1.png" alt="Vocal Class">
+            <img src="vocal-class-photo2.jpg" alt="Vocal Class">
+            <img src="vocal-class-photo3.png" alt="Vocal Class">
+        </div>
+        <button class="instrument-close" onclick="closeInstrument()">Close</button>
+    </div>
+</section>
+
+<section id="schedule">
+    <h2>📅 Class Schedule</h2>
+    <div class="box">
+        <p><strong>Sunday:</strong> 09.00 AM – 11.00 AM</p>
+        <p><strong>Sunday:</strong> 04.00 PM – 08.00 PM</p>
+        <p><strong>Tuesday:</strong> 04.00 PM – 08.00 PM</p>
+        <p><strong>Wednesday:</strong> 04.00 PM – 08.00 PM</p>
+        <p><strong>Thursday:</strong> 04.00 PM – 08.00 PM</p>
+        <p><strong>Friday:</strong> 04.00 PM – 08.00 PM</p>
+        <p><strong>Saturday:</strong> 09.00 AM – 11.00 AM</p>
+        <p><strong>Saturday:</strong> 04.00 PM – 08.00 PM</p>
+        <hr>
+        <p>🌐 Online Classes Available</p>
+        <p>🏠 Home Visiting Classes Available</p>
+    </div>
+</section>
+
+<section id="photos">
+    <h2>📸 Our Photos</h2>
+    <div class="photos">
+    <img src="photo1.jpg" alt="Sathsaaraa Music Classes performance">
+    <img src="photo2.jpg" alt="Sathsaaraa Music Classes piano practice">
+    <img src="photo3.png" alt="Sathsaaraa Music Classes">
+    <img src="photo4.jpg" alt="Sathsaaraa Music Classes">
+    <img src="photo6.jpg" alt="D. Jayakody - Sathsaaraa Music Classes">
+    <img src="photo7.png" alt="Sathsaaraa Music Classes">
+
+        <img src="online-guitar-keyboard-classes.jpg" alt="Online Guitar & Keyboard Classes">
+</div>
+</section>
+
+<section id="videos">
+    <h2>🎬 Our Videos</h2>
+    <div class="videos">
+        <div>
+            <h3>Sathsaaraa Music Class</h3>
+            <video controls>
+                <source src="Sathsaaraa-Music-Class.mp4" type="video/mp4">
+                Your browser does not support video.
+            </video>
+        </div>
+        <div>
+            <h3>Vocal Music</h3>
+            <video controls>
+                <source src="Vocal-Music.mp4" type="video/mp4">
+                Your browser does not support video.
+            </video>
+        </div>
+        <div>
+            <h3>Sathsaaraa Music Class</h3>
+            <video controls>
+                <source src="Sathsaaraa-Music-Class-3.mp4" type="video/mp4">
+                Your browser does not support video.
+            </video>
+        </div>
+        <div>
+            <h3>Spirits in the Material World</h3>
+            <video controls>
+                <source src="Spirits-in-the-Material-World.mp4" type="video/mp4">
+                Your browser does not support video.
+            </video>
+        </div>
+    
+        <div>
+            <h3>Music Journey</h3>
+            <video controls>
+                <source src="Music-Journey.mp4" type="video/mp4">
+                Your browser does not support video.
+            </video>
+        </div>
+        <div>
+            <h3>Play Guitar</h3>
+            <video controls>
+                <source src="Play-Guitar.mp4" type="video/mp4">
+                Your browser does not support video.
+            </video>
+        </div>
+
+        <div>
+            <h3>We Rise Above</h3>
+            <video controls>
+                <source src="We-Rise-Above.mp4" type="video/mp4">
+                Your browser does not support video.
+            </video>
+        </div>
+</div>
+</section>
+
+<section id="mp3">
+    <h2>🎵 MP3</h2>
+    <div class="mp3-player">
+        <h3>Gasak Wawamu - Dammike Jayakody</h3>
+        <audio controls preload="metadata">
+            <source src="Gasak-Wawamu-Dammike-Jayakody.mp3" type="audio/mpeg">
+            Your browser does not support the audio player.
+        </audio>
+    </div>
+</section>
+
+
+<section id="request">
+    <h2>🎵 Request a Class</h2>
+    <div class="request-form">
+        <form onsubmit="sendClassRequest(event)">
+            <label for="request-name">Your Name</label>
+            <input id="request-name" name="Name" type="text" placeholder="Enter your name" required>
+            <label for="request-phone">Phone / WhatsApp Number</label>
+            <input id="request-phone" name="Phone / WhatsApp" type="tel" placeholder="Enter your phone number" required>
+            <label for="request-class">Class</label>
+            <select id="request-class" name="Class" required>
+                <option value="">Select a class</option>
+                <option>Guitar</option><option>Keyboard</option><option>Ukulele</option><option>Violin</option><option>Vocal</option>
+            </select>
+            <label for="request-day">Preferred Day / Time</label>
+            <input id="request-day" name="Preferred Day / Time" type="text" placeholder="Example: Saturday 4 PM">
+            <label for="request-message">Message</label>
+            <textarea id="request-message" name="Message" placeholder="Tell us anything you would like to ask"></textarea>
+            <button type="submit">📱 Send Class Request on WhatsApp</button>
+        </form>
+        <p class="request-note">Your request will be sent directly to WhatsApp: <strong>+94 702972901</strong>.</p>
+        <p class="request-note">Your request will be prepared as an email to <strong>djayakody92@gmail.com</strong>.</p>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>📞 Contact Us</h2>
+    <div class="box">
+        <p><strong>Teacher:</strong> D. Jayakody</p>
+        <p><strong>Mobile:</strong> +94 776234232</p>
+        <p><strong>Landline:</strong> 0112617707</p>
+        <p><strong>WhatsApp:</strong> +94 702972901</p>
+        <p><strong>Address:</strong><br>
+        284/34, Madapatha Road,<br>
+        Kurunduwatta, Piliyandala.</p>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Sathsaaraa Music Classes</p>
+    <p>Teacher – D. Jayakody</p>
+</footer>
+
+
+<script>
+function showInstrument(id) {
+    document.querySelectorAll('.instrument-panel').forEach(function(p) {
+        p.classList.remove('active');
+    });
+    var p = document.getElementById(id);
+    if (p) {
+        p.classList.add('active');
+        p.scrollIntoView({behavior:'smooth', block:'center'});
+    }
+}
+function closeInstrument() {
+    document.querySelectorAll('.instrument-panel').forEach(function(p) {
+        p.classList.remove('active');
+    });
+}
+// Highlight the navigation item that is pressed.
+document.querySelectorAll('nav a').forEach(function(link) {
+    link.addEventListener('click', function() {
+        document.querySelectorAll('nav a').forEach(function(item) {
+            item.classList.remove('active');
+        });
+        this.classList.add('active');
+    });
+});
+
+document.querySelectorAll('.subject').forEach(function(card) {
+    card.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            card.click();
+        }
+    });
+});
+</script>
+<script>
+function sendClassRequest(event) {
+    event.preventDefault();
+    const name=document.getElementById('request-name').value.trim();
+    const phone=document.getElementById('request-phone').value.trim();
+    const cls=document.getElementById('request-class').value;
+    const day=document.getElementById('request-day').value.trim();
+    const msg=document.getElementById('request-message').value.trim();
+    const text=`🎵 Class Request - Sathsaaraa Music Classes\n\nName: ${name}\nPhone / WhatsApp: ${phone}\nClass: ${cls}\nPreferred Day / Time: ${day || "Not specified"}\nMessage: ${msg || "No message"}`;
+    window.open("https://wa.me/94702972901?text="+encodeURIComponent(text),"_blank");
+}
+</script></body>
+</html>
